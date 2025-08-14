@@ -1,154 +1,211 @@
 # Komodo MCP Server
 
-Un servidor MCP (Model Context Protocol) para integrar la API de Komodo con Trae IDE.
+Un servidor MCP (Model Context Protocol) completo para la API de Komodo. Proporciona acceso a todas las funcionalidades de Komodo a través de una arquitectura modular y bien estructurada.
 
-## Configuración
+## 🚀 Características
 
-1. Asegúrate de tener las variables de entorno configuradas en el archivo `.env`:
+- **Arquitectura Modular**: Organizado en módulos de recursos para mejor mantenibilidad
+- **Cobertura Completa de API**: Integra todos los endpoints disponibles de Komodo
+- **TypeScript**: Completamente tipado para mejor experiencia de desarrollo
+- **Manejo de Errores**: Sistema centralizado de manejo de errores
+- **Configuración Flexible**: Soporte para múltiples entornos
 
-```env
-KOMODO_KEY="tu_api_key"
-KOMODO_SECRET="tu_secret"
-KOMODO_URL="https://tu-instancia.komo.do"
-```
+## 📦 Instalación
 
-2. Instala las dependencias:
-
-```bash
-pnpm install
-```
-
-3. Compila el proyecto:
-
-```bash
-pnpm build
-```
-
-4. Prueba la conexión con Komodo:
-
-```bash
-node test-mcp.js
-```
-
-## Solución de Problemas
-
-### Error -32601 "Method not found" en Trae IDE
-
-Si recibes este error, el servidor MCP está funcionando correctamente (verificado con `node diagnose-mcp.js`). El problema está en la configuración de Trae IDE:
-
-#### Pasos para resolver:
-
-1. **Verifica la ubicación del archivo de configuración**:
-   - El archivo `mcp-config-trae.json` debe estar en el directorio de configuración de Trae IDE
-   - Ubicación típica: `~/.config/trae/mcp-config.json` o similar
-
-2. **Verifica el contenido de la configuración**:
-   ```json
-   {
-     "mcpServers": {
-       "komodo": {
-         "command": "node",
-         "args": ["/opt/dev/mcp/komodo/dist/index.js"],
-         "cwd": "/opt/dev/mcp/komodo",
-         "env": {
-           "KOMODO_KEY": "tu-key-aqui",
-           "KOMODO_SECRET": "tu-secret-aqui",
-           "KOMODO_URL": "tu-url-aqui"
-         }
-       }
-     }
-   }
-   ```
-
-3. **Reinicia Trae IDE** después de cambiar la configuración
-
-4. **Verifica la versión de Node.js**:
+1. **Clona el repositorio**:
    ```bash
-   node --version  # Debe ser v18 o superior
+   git clone <repository-url>
+   cd komodo-mcp-server
    ```
 
-5. **Ejecuta el diagnóstico completo**:
+2. **Instala las dependencias**:
    ```bash
-   node diagnose-mcp.js
+   pnpm install
    ```
 
-### Scripts de Diagnóstico
+3. **Configura las variables de entorno**:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edita el archivo `.env` con tus credenciales:
+   ```env
+   KOMODO_KEY="tu_api_key"
+   KOMODO_SECRET="tu_secret"
+   KOMODO_URL="https://tu-instancia.komo.do"
+   ```
 
-- `node test-mcp.js` - Prueba básica de conexión con Komodo
-- `node test-mcp-protocol.js` - Prueba completa del protocolo MCP
-- `node diagnose-mcp.js` - Diagnóstico completo del servidor
+4. **Compila el proyecto**:
+   ```bash
+   pnpm build
+   ```
 
-### Estado del Servidor
-
-✅ **Servidor MCP**: Funcionando correctamente  
-✅ **Protocolo MCP**: Implementado completamente  
-✅ **Conexión Komodo**: Verificada (37 stacks, 9 servidores)  
-✅ **Herramientas MCP**: 6 herramientas disponibles  
-
-Si el problema persiste, verifica la configuración específica de Trae IDE o contacta al soporte técnico.
-
-## Uso
+## 🏃‍♂️ Uso
 
 ### Desarrollo
-
 ```bash
 pnpm dev
 ```
 
 ### Producción
-
 ```bash
 pnpm start
 ```
 
-## Herramientas Disponibles
+## 🛠️ Herramientas Disponibles
 
-El servidor MCP proporciona las siguientes herramientas para interactuar con Komodo:
+El servidor MCP proporciona **40+ herramientas** organizadas en los siguientes módulos:
 
-### `list_stacks`
-Lista todos los stacks disponibles en Komodo.
+### 🖥️ Servidores
+- `list_servers` - Lista todos los servidores
+- `get_server_info` - Información detallada de un servidor
+- `create_server` - Crea un nuevo servidor
+- `update_server` - Actualiza configuración de servidor
+- `delete_server` - Elimina un servidor
+- `get_server_stats` - Estadísticas del servidor
 
-### `get_stack_info`
-Obtiene información detallada de un stack específico.
-- **Parámetros**: `stack_name` (string)
+### 📚 Stacks
+- `list_stacks` - Lista todos los stacks
+- `get_stack_info` - Información detallada de un stack
+- `deploy_stack` - Despliega un stack
+- `create_stack` - Crea un nuevo stack
+- `update_stack` - Actualiza configuración de stack
+- `delete_stack` - Elimina un stack
+- `start_stack` - Inicia un stack
+- `stop_stack` - Detiene un stack
+- `restart_stack` - Reinicia un stack
 
-### `deploy_stack`
-Despliega un stack específico.
-- **Parámetros**: `stack_name` (string)
+### 🚀 Deployments
+- `list_deployments` - Lista todos los deployments
+- `get_deployment_info` - Información detallada de un deployment
+- `deploy_deployment` - Despliega un deployment
+- `create_deployment` - Crea un nuevo deployment
+- `update_deployment` - Actualiza configuración de deployment
+- `delete_deployment` - Elimina un deployment
+- `start_deployment` - Inicia un deployment
+- `stop_deployment` - Detiene un deployment
+- `restart_deployment` - Reinicia un deployment
+- `get_deployment_logs` - Obtiene logs de deployment
 
-### `list_servers`
-Lista todos los servidores disponibles.
+### 🔨 Builds
+- `list_builds` - Lista todos los builds
+- `get_build_info` - Información detallada de un build
+- `run_build` - Ejecuta un build
+- `create_build` - Crea un nuevo build
+- `update_build` - Actualiza configuración de build
+- `delete_build` - Elimina un build
+- `cancel_build` - Cancela un build en ejecución
 
-### `get_server_info`
-Obtiene información detallada de un servidor específico.
-- **Parámetros**: `server_id` (string)
+### 📁 Repositorios
+- `list_repos` - Lista todos los repositorios
+- `get_repo_info` - Información detallada de un repositorio
+- `create_repo` - Crea un nuevo repositorio
+- `update_repo` - Actualiza configuración de repositorio
+- `delete_repo` - Elimina un repositorio
+- `pull_repo` - Actualiza repositorio desde origen
+- `clone_repo` - Clona un repositorio
 
-### `list_updates`
-Lista las actualizaciones recientes.
-- **Parámetros**: `limit` (number, opcional, por defecto: 10)
+### ⚙️ Procedimientos
+- `list_procedures` - Lista todos los procedimientos
+- `get_procedure_info` - Información detallada de un procedimiento
+- `run_procedure` - Ejecuta un procedimiento
+- `create_procedure` - Crea un nuevo procedimiento
+- `update_procedure` - Actualiza configuración de procedimiento
+- `delete_procedure` - Elimina un procedimiento
 
-## Integración con Trae IDE
+### 🔧 Sistema
+- `list_updates` - Lista actualizaciones del sistema
+- `get_system_info` - Información del sistema
+- `get_version` - Versión de Komodo
+- `list_alerters` - Lista alertas configuradas
+- `get_alerter_info` - Información detallada de una alerta
+- `create_alerter` - Crea una nueva alerta
+- `update_alerter` - Actualiza configuración de alerta
+- `delete_alerter` - Elimina una alerta
 
-Para usar este servidor MCP con Trae IDE, agrega la configuración correspondiente en tu archivo de configuración de MCP de Trae.
-
-## Estructura del Proyecto
+## 🏗️ Arquitectura
 
 ```
-├── src/
-│   └── index.ts          # Servidor MCP principal
-├── dist/                 # Archivos compilados
-├── .env                  # Variables de entorno
-├── package.json          # Configuración del proyecto
-├── tsconfig.json         # Configuración de TypeScript
-└── README.md            # Este archivo
+src/
+├── index.ts              # Punto de entrada principal
+├── types.ts              # Definiciones de tipos TypeScript
+├── client.ts             # Cliente Komodo y utilidades
+└── resources/            # Módulos de recursos
+    ├── servers.ts        # Gestión de servidores
+    ├── stacks.ts         # Gestión de stacks
+    ├── deployments.ts    # Gestión de deployments
+    ├── builds.ts         # Gestión de builds
+    ├── repos.ts          # Gestión de repositorios
+    ├── procedures.ts     # Gestión de procedimientos
+    └── system.ts         # Funciones del sistema
 ```
 
-## Dependencias
+### Principios de Diseño
 
-- `@modelcontextprotocol/sdk`: SDK para crear servidores MCP
-- `komodo_client`: Cliente oficial de TypeScript para la API de Komodo
-- `dotenv`: Para cargar variables de entorno
+- **Separación de Responsabilidades**: Cada módulo maneja un tipo específico de recurso
+- **Reutilización de Código**: Cliente y utilidades compartidas
+- **Tipado Fuerte**: Interfaces TypeScript para mejor seguridad
+- **Manejo Consistente de Errores**: Respuestas uniformes en toda la aplicación
 
-## Licencia
+## 🔧 Configuración MCP
+
+Para usar este servidor MCP, configúralo en tu cliente MCP compatible:
+
+```json
+{
+  "mcpServers": {
+    "komodo": {
+      "command": "node",
+      "args": ["/ruta/a/komodo-mcp-server/dist/index.js"],
+      "cwd": "/ruta/a/komodo-mcp-server",
+      "env": {
+        "KOMODO_KEY": "tu-key-aqui",
+        "KOMODO_SECRET": "tu-secret-aqui",
+        "KOMODO_URL": "tu-url-aqui"
+      }
+    }
+  }
+}
+```
+
+## 🐛 Solución de Problemas
+
+### Error de Conexión
+1. Verifica las variables de entorno
+2. Confirma que la URL de Komodo sea accesible
+3. Valida las credenciales API
+
+### Error "Method not found"
+1. Asegúrate de que el servidor esté compilado (`pnpm build`)
+2. Verifica la configuración en tu cliente MCP
+3. Reinicia el cliente MCP después de cambios de configuración
+
+### Problemas de Permisos
+1. Verifica que las credenciales tengan los permisos necesarios
+2. Confirma que el usuario tenga acceso a los recursos solicitados
+
+## 📋 Requisitos
+
+- Node.js v18 o superior
+- pnpm (recomendado) o npm
+- Acceso a una instancia de Komodo
+- Credenciales API válidas
+
+## 🤝 Contribución
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
+3. Commit tus cambios (`git commit -am 'Agrega nueva funcionalidad'`)
+4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
+5. Abre un Pull Request
+
+## 📄 Licencia
 
 ISC
+
+## 🔗 Enlaces
+
+- [Documentación de Komodo](https://docs.komo.do)
+- [Model Context Protocol](https://modelcontextprotocol.io)
+
+---
