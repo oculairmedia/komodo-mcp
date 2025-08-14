@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "komodo": {
+      "command": "node",
+      "args": ["/ruta/absoluta/a/komodo-mcp-server/dist/index.js"],
+      "env": {
+        "KOMODO_KEY": "tu_api_key",
+        "KOMODO_SECRET": "tu_secret",
+        "KOMODO_URL": "https://tu-instancia.komo.do"
+      }
+    }
+  }
+}
