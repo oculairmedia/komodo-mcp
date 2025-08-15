@@ -3,6 +3,7 @@
 
 ### Node ###
 # Logs
+komodo.json
 logs
 *.log
 npm-debug.log*
