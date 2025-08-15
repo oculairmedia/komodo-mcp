@@ -16,9 +16,16 @@ RUN pnpm install --frozen-lockfile
 # Copiar código fuente
 COPY src/ ./src/
 COPY tsconfig.json ./
+COPY komodo.json ./komodo.json
 
 # Compilar TypeScript
 RUN pnpm run build
+
+# Instalar Python y uv para uvx
+RUN apk add --no-cache python3 py3-pip curl && \
+    curl -LsSf https://astral.sh/uv/install.sh | sh && \
+    mv /root/.local/bin/uv /usr/local/bin/ && \
+    mv /root/.local/bin/uvx /usr/local/bin/
 
 # Crear usuario no-root para seguridad
 RUN addgroup -g 1001 -S nodejs && \
@@ -28,14 +35,15 @@ RUN addgroup -g 1001 -S nodejs && \
 RUN chown -R komodo:nodejs /app
 USER komodo
 
-# Exponer puerto para supergateway
-EXPOSE 3333
+# Expose port for API
+EXPOSE 3333 8090
 
-# Variables de entorno por defecto
-ENV NODE_ENV=production
-ENV KOMODO_URL=""
-ENV KOMODO_KEY=""
-ENV KOMODO_SECRET=""
+# Default environment variables
+ENV NODE_ENV=production \
+    KOMODO_URL="" \
+    KOMODO_KEY="" \
+    KOMODO_SECRET="" \
+    KOMODO_API_KEY=""
 
-# Comando por defecto - usar supergateway para HTTP/SSE
-CMD ["npx", "-y", "supergateway", "--stdio", "node /app/dist/index.js", "--port", "3333", "--baseUrl", "http://0.0.0.0:3333", "--ssePath", "/sse", "--messagePath", "/message", "--cors"]
+# Default command - run both services
+CMD ["sh", "-c", "npx -y supergateway --stdio 'node /app/dist/index.js' --port 3333 --baseUrl http://0.0.0.0:3333 --ssePath /sse --messagePath /message --cors & uvx mcpo --config ./komodo.json --port 8090 --api-key '' --hot-reload"]
