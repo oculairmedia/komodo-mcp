@@ -184,7 +184,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_stacks', error);
+      throw handleError('list_stacks', error);
     }
   },
 
@@ -199,7 +199,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_stack_info', error);
+      throw handleError('get_stack_info', error);
     }
   },
 
@@ -218,7 +218,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('deploy_stack', error);
+      throw handleError('deploy_stack', error);
     }
   },
 
@@ -247,7 +247,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('create_stack', error);
+      throw handleError('create_stack', error);
     }
   },
 
@@ -267,7 +267,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('update_stack', error);
+      throw handleError('update_stack', error);
     }
   },
 
@@ -282,7 +282,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('delete_stack', error);
+      throw handleError('delete_stack', error);
     }
   },
 
@@ -297,7 +297,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('stop_stack', error);
+      throw handleError('stop_stack', error);
     }
   },
 
@@ -312,7 +312,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('start_stack', error);
+      throw handleError('start_stack', error);
     }
   },
 
@@ -327,7 +327,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('restart_stack', error);
+      throw handleError('restart_stack', error);
     }
   },
 };

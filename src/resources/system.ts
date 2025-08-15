@@ -142,7 +142,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_updates', error);
+      throw handleError('list_updates', error);
     }
   },
 
@@ -157,7 +157,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_system_info', error);
+      throw handleError('get_system_info', error);
     }
   },
 
@@ -172,7 +172,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_version', error);
+      throw handleError('get_version', error);
     }
   },
 
@@ -187,7 +187,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_secrets', error);
+      throw handleError('list_secrets', error);
     }
   },
 
@@ -204,7 +204,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_alerters', error);
+      throw handleError('list_alerters', error);
     }
   },
 
@@ -219,7 +219,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_alerter_info', error);
+      throw handleError('get_alerter_info', error);
     }
   },
 
@@ -242,7 +242,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('create_alerter', error);
+      throw handleError('create_alerter', error);
     }
   },
 
@@ -262,7 +262,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('update_alerter', error);
+      throw handleError('update_alerter', error);
     }
   },
 
@@ -277,7 +277,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('delete_alerter', error);
+      throw handleError('delete_alerter', error);
     }
   },
 };

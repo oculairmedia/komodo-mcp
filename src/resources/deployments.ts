@@ -211,7 +211,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_deployments', error);
+      throw handleError('list_deployments', error);
     }
   },
 
@@ -226,7 +226,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_deployment_info', error);
+      throw handleError('get_deployment_info', error);
     }
   },
 
@@ -245,7 +245,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('deploy_deployment', error);
+      throw handleError('deploy_deployment', error);
     }
   },
 
@@ -273,7 +273,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('create_deployment', error);
+      throw handleError('create_deployment', error);
     }
   },
 
@@ -293,7 +293,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('update_deployment', error);
+      throw handleError('update_deployment', error);
     }
   },
 
@@ -308,7 +308,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('delete_deployment', error);
+      throw handleError('delete_deployment', error);
     }
   },
 
@@ -323,7 +323,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('stop_deployment', error);
+      throw handleError('stop_deployment', error);
     }
   },
 
@@ -338,7 +338,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('start_deployment', error);
+      throw handleError('start_deployment', error);
     }
   },
 
@@ -353,7 +353,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('restart_deployment', error);
+      throw handleError('restart_deployment', error);
     }
   },
 
@@ -371,7 +371,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_deployment_logs', error);
+      throw handleError('get_deployment_logs', error);
     }
   },
 };

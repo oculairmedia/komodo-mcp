@@ -29,6 +29,24 @@ export function formatResponse(data: any, message?: string): string {
 }
 
 export function handleError(operation: string, error: any): never {
-  const errorMessage = error instanceof Error ? error.message : String(error);
+  let errorMessage: string;
+  
+  if (error instanceof Error) {
+    errorMessage = error.message;
+  } else if (typeof error === 'object' && error !== null) {
+    // Try to extract meaningful information from error objects
+    if (error.message) {
+      errorMessage = error.message;
+    } else if (error.error) {
+      errorMessage = typeof error.error === 'string' ? error.error : JSON.stringify(error.error);
+    } else if (error.data) {
+      errorMessage = typeof error.data === 'string' ? error.data : JSON.stringify(error.data);
+    } else {
+      errorMessage = JSON.stringify(error);
+    }
+  } else {
+    errorMessage = String(error);
+  }
+  
   throw new Error(`Error executing ${operation}: ${errorMessage}`);
 }

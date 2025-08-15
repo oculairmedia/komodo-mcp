@@ -31,11 +31,29 @@ const server = new Server(
 );
 
 // Initialize Komodo client
-initializeKomodoClient({
-  url: process.env.KOMODO_URL!,
-  key: process.env.KOMODO_KEY!,
-  secret: process.env.KOMODO_SECRET!,
-});
+const komodoUrl = process.env.KOMODO_URL;
+const komodoKey = process.env.KOMODO_KEY;
+const komodoSecret = process.env.KOMODO_SECRET;
+
+if (!komodoUrl || !komodoKey || !komodoSecret) {
+  console.error('Missing required environment variables:');
+  console.error('- KOMODO_URL:', komodoUrl ? '✓' : '✗');
+  console.error('- KOMODO_KEY:', komodoKey ? '✓' : '✗');
+  console.error('- KOMODO_SECRET:', komodoSecret ? '✓' : '✗');
+  process.exit(1);
+}
+
+try {
+  initializeKomodoClient({
+    url: komodoUrl,
+    key: komodoKey,
+    secret: komodoSecret,
+  });
+  console.error('Komodo MCP server running on stdio');
+} catch (error) {
+  console.error('Failed to initialize Komodo client:', error);
+  process.exit(1);
+}
 
 // Collect all resource modules
 const resourceModules: ResourceModule[] = [

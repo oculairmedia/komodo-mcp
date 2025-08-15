@@ -134,7 +134,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_servers', error);
+      throw handleError('list_servers', error);
     }
   },
 
@@ -149,7 +149,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_server_info', error);
+      throw handleError('get_server_info', error);
     }
   },
 
@@ -171,7 +171,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('create_server', error);
+      throw handleError('create_server', error);
     }
   },
 
@@ -192,7 +192,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('update_server', error);
+      throw handleError('update_server', error);
     }
   },
 
@@ -207,7 +207,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('delete_server', error);
+      throw handleError('delete_server', error);
     }
   },
 
@@ -222,7 +222,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_server_stats', error);
+      throw handleError('get_server_stats', error);
     }
   },
 };

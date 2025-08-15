@@ -139,7 +139,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_repos', error);
+      throw handleError('list_repos', error);
     }
   },
 
@@ -154,7 +154,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_repo_info', error);
+      throw handleError('get_repo_info', error);
     }
   },
 
@@ -179,7 +179,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('create_repo', error);
+      throw handleError('create_repo', error);
     }
   },
 
@@ -199,7 +199,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('update_repo', error);
+      throw handleError('update_repo', error);
     }
   },
 
@@ -214,7 +214,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('delete_repo', error);
+      throw handleError('delete_repo', error);
     }
   },
 
@@ -229,7 +229,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('pull_repo', error);
+      throw handleError('pull_repo', error);
     }
   },
 
@@ -244,7 +244,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('clone_repo', error);
+      throw handleError('clone_repo', error);
     }
   },
 };

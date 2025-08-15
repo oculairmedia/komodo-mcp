@@ -135,7 +135,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_procedures', error);
+      throw handleError('list_procedures', error);
     }
   },
 
@@ -150,7 +150,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_procedure_info', error);
+      throw handleError('get_procedure_info', error);
     }
   },
 
@@ -165,7 +165,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('run_procedure', error);
+      throw handleError('run_procedure', error);
     }
   },
 
@@ -187,7 +187,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('create_procedure', error);
+      throw handleError('create_procedure', error);
     }
   },
 
@@ -207,7 +207,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('update_procedure', error);
+      throw handleError('update_procedure', error);
     }
   },
 
@@ -222,7 +222,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('delete_procedure', error);
+      throw handleError('delete_procedure', error);
     }
   },
 };

@@ -145,7 +145,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('list_builds', error);
+      throw handleError('list_builds', error);
     }
   },
 
@@ -160,7 +160,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('get_build_info', error);
+      throw handleError('get_build_info', error);
     }
   },
 
@@ -175,7 +175,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('run_build', error);
+      throw handleError('run_build', error);
     }
   },
 
@@ -202,7 +202,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('create_build', error);
+      throw handleError('create_build', error);
     }
   },
 
@@ -222,7 +222,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('update_build', error);
+      throw handleError('update_build', error);
     }
   },
 
@@ -237,7 +237,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('delete_build', error);
+      throw handleError('delete_build', error);
     }
   },
 
@@ -252,7 +252,7 @@ const handlers: Record<string, ToolHandler> = {
         }],
       };
     } catch (error) {
-      handleError('cancel_build', error);
+      throw handleError('cancel_build', error);
     }
   },
 
