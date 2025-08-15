@@ -1,0 +1,40 @@
+# Dependencias
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Archivos de desarrollo
+.git/
+.gitignore
+*.md
+.env.example
+
+# Archivos de build
+dist/
+build/
+
+# Archivos temporales
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Runtime
+.npm
+.eslintcache

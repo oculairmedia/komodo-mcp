@@ -42,12 +42,76 @@ Un servidor MCP (Model Context Protocol) completo para la API de Komodo. Proporc
 
 ## 🏃‍♂️ Uso
 
-### Desarrollo
+### Método 1: Desarrollo Local
+
+#### Desarrollo
 ```bash
 pnpm dev
 ```
 
-### Producción
+#### Producción
+```bash
+pnpm build
+pnpm start
+```
+
+#### Con Supergateway (HTTP/SSE)
+```bash
+npx -y supergateway \
+  --stdio "node dist/index.js" \
+  --port 3333 \
+  --baseUrl http://0.0.0.0:3333 \
+  --ssePath /sse \
+  --messagePath /message \
+  --cors
+```
+
+### Método 2: Docker 🐳
+
+#### Construcción y ejecución rápida
+```bash
+# Construir la imagen
+docker build -t komodo-mcp .
+
+# Ejecutar el contenedor
+docker run -d \
+  --name komodo-mcp-server \
+  -p 3333:3333 \
+  --env-file .env \
+  komodo-mcp
+```
+
+#### Usando Docker Compose (Recomendado)
+```bash
+# Iniciar el servicio
+docker-compose up -d
+
+# Ver logs
+docker-compose logs -f
+
+# Detener el servicio
+docker-compose down
+```
+
+#### Verificar que funciona
+```bash
+# Verificar que el servidor está corriendo
+curl http://localhost:3333/sse
+
+# Ver logs del contenedor
+docker logs komodo-mcp-server
+```
+
+### Configuración de Variables de Entorno
+
+Asegúrate de tener configurado el archivo `.env`:
+```env
+KOMODO_KEY="tu_api_key"
+KOMODO_SECRET="tu_secret"
+KOMODO_URL="https://tu-instancia.komo.do"
+```
+
+### Producción Local
 ```bash
 pnpm start
 ```
