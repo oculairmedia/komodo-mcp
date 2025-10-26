@@ -16,10 +16,8 @@ RUN pnpm install --frozen-lockfile
 # Copiar código fuente
 COPY src/ ./src/
 COPY tsconfig.json ./
-COPY komodo.json ./komodo.json
 
-# Compilar TypeScript
-RUN pnpm run build
+# Skip TypeScript compilation - run with tsx directly
 
 # Instalar Python y uv para uvx
 RUN apk add --no-cache python3 py3-pip curl && \
@@ -36,14 +34,15 @@ RUN chown -R komodo:nodejs /app
 USER komodo
 
 # Expose port for API
-EXPOSE 3333 8090
+EXPOSE 9716
 
 # Default environment variables
 ENV NODE_ENV=production \
+    PORT=9716 \
     KOMODO_URL="" \
     KOMODO_KEY="" \
     KOMODO_SECRET="" \
     KOMODO_API_KEY=""
 
-# Default command - run both services
-CMD ["sh", "-c", "npx -y supergateway --stdio 'node /app/dist/index.js' --port 3333 --baseUrl http://0.0.0.0:3333 --ssePath /sse --messagePath /message --cors & uvx mcpo --config ./komodo.json --port 8090 --api-key '' --hot-reload"]
+# Default command - run consolidated server with tsx (no build needed)
+CMD ["npx", "tsx", "/app/src/server-consolidated.ts"]
